@@ -10,5 +10,13 @@
             "email": "shiweidu@outlook.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.0",
+        "phpunit/phpunit": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Medz\\IdentityCard\\China\\": "src/"
+        }
+    }
 }
