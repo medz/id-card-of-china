@@ -36,12 +36,4 @@ interface IdentityInterface
      * @author Seven Du <shiweidu@outlook.com>
      */
     public function gender(): string;
-
-    /**
-     * Get The ID Card People One of 12 Symbolic Animals.
-     * 
-     * @return string
-     * @author Seven Du <shiweidu@outlook.com>
-     */
-    public function symbolicAnimal(): string;
 }

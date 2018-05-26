@@ -33,7 +33,7 @@ class Region implements RegionInterface
         $this->regions = json_decode(
             // Using `file_get_contents` function read
             // `medz/gb-t-2600` package data provided.
-            file_get_contents(MEDZ_GBT2260_RAW_PATH)
+            file_get_contents(MEDZ_GBT2260_RAW_PATH), true
         );
 
         // Setting init region code.
