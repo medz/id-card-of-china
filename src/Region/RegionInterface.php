@@ -7,6 +7,14 @@ namespace Medz\IdentityCard\China\Region;
 interface RegionInterface
 {
     /**
+     * Get the Region Code.
+     * 
+     * @return int
+     * @author Seven Du <shiweidu@outlook.com>
+     */
+    public function code(): int;
+
+    /**
      * Get Province Of The Region.
      * 
      * @return string
@@ -41,9 +49,9 @@ interface RegionInterface
     /**
      * Get The Region Tree String.
      * 
-     * @param string $spacer Set Implode String
+     * @param string $glue Join Array Elements With A Glue String
      * @return string
      * @author Seven Du <shiweidu@outlook.com>
      */
-    public function treeString(string $spacer = ' '): string;
+    public function treeString(string $glue = ''): string;
 }
