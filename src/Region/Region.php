@@ -75,7 +75,11 @@ class Region implements RegionInterface
         // Get city code of the region.
         $cityCode = substr($this->code, 0, 4).'00';
 
-        return $this->regions[$cityCode];
+        if (isset($this->regions[$cityCode])) {
+            return $this->regions[$cityCode];
+        }
+
+        return '';
     }
 
     /**
@@ -97,11 +101,11 @@ class Region implements RegionInterface
      */
     public function tree(): array
     {
-        return [
+        return array_values(array_filter([
             $this->province(),
             $this->city(),
             $this->county(),
-        ];
+        ]));
     }
 
     /**
