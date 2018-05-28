@@ -11,7 +11,7 @@ class Region implements RegionInterface
      * 
      * @var array
      */
-    protected $regions = [];
+    protected static $regions = [];
 
     /**
      * The Init Region Code.
@@ -28,13 +28,15 @@ class Region implements RegionInterface
      */
     public function __construct(int $regionCode)
     {
-        // Seting regions to [$this->regions],
-        // Using `json_decode` function decode json RAW string.
-        $this->regions = json_decode(
-            // Using `file_get_contents` function read
-            // `medz/gb-t-2600` package data provided.
-            file_get_contents(MEDZ_GBT2260_RAW_PATH), true
-        );
+        if (empty(static::$regions)) {
+            // Seting regions to [static::$regions],
+            // Using `json_decode` function decode json RAW string.
+            static::$regions = json_decode(
+                // Using `file_get_contents` function read
+                // `medz/gb-t-2600` package data provided.
+                file_get_contents(MEDZ_GBT2260_RAW_PATH), true
+            );
+        }
 
         // Setting init region code.
         $this->code = (string) $regionCode;
@@ -61,7 +63,7 @@ class Region implements RegionInterface
     {
         $provinceCode = substr($this->code, 0, 2).'0000';
 
-        return $this->regions[$provinceCode];
+        return static::$regions[$provinceCode];
     }
 
     /**
@@ -75,8 +77,8 @@ class Region implements RegionInterface
         // Get city code of the region.
         $cityCode = substr($this->code, 0, 4).'00';
 
-        if (isset($this->regions[$cityCode])) {
-            return $this->regions[$cityCode];
+        if (isset(static::$regions[$cityCode])) {
+            return static::$regions[$cityCode];
         }
 
         return '';
@@ -90,7 +92,7 @@ class Region implements RegionInterface
      */
     public function county(): string
     {
-        return $this->regions[$this->code];
+        return static::$regions[$this->code];
     }
 
     /**
