@@ -6,7 +6,7 @@
 
 >  JavaScript 版本：https://githu.com/medz/id-card-of-china-js
 
-`id-card-of-china` 是一个基于「身份证号码」规则获取身份证号码中包含的基础信息组件。
+`id-card-of-china` 是一个基于「公民身份号码」规则获取公民身份号码中包含的基础信息组件。
 
 ## 安装
 
@@ -33,8 +33,8 @@ $peopleIdentity = new Identity($peopleIDNumber);
 
 > 基于 `Medz\IdentityCard\China\IdentityInterface` 实例
 
-- `legal`：检查身份证号码是否合法
-- `birthday`：获取身份证号码中包含的生日信息
+- `legal`：检查公民身份号码是否合法
+- `birthday`：获取公民身份号码中包含的生日信息
 - `gender`：获取身份证包含的性别信息
 - `region`: 获取身份证包含的地区信息，返回 `Medz\IdentityCard\China\Region\RegionInterface` 实例
 
@@ -73,15 +73,15 @@ var_dump(
 
 1. 问：为什么不添加年龄、星座还有属相等信息？
 
-   答：因为年龄需要专门的时间组件去计算，星座如果是「粗略」计算可以获得，但是没有意义，属相更加负责，负责任的转换这些属性都比简单复杂，简单转换出来的不够准确。同样也失去了包本身该有的功能，例如年龄可以交给「时间组件」等。
+   答：因为年龄需要专门的时间组件去计算，星座如果是「粗略」计算可以获得，但是没有意义，属相更加复杂，负责任的转换这些属性都比简单转换复杂，简单转换出来的不够准确。同样也失去了包本身该有的功能，例如年龄可以交给「时间组件」等。
 
 2. 问：这个包到底干啥的？
 
-   答：这个包就是提取身份证号码所包含的基础信息
+   答：这个包就是提取公民身份号码所包含的基础信息
 
 3. 问：可以用来验证人或者其他的吗？
 
-   答：不基于公安部的 API 验证的身份证组件都不能叫验证组件，现在所有的 ID Card 组件都只能提取身份证号码所包含的信息，如果说验证，那唯一能验证的就是身份证号码是否是一个合法的身份证号码。
+   答：不基于公安部的 API 验证的身份证组件都不能叫验证组件，现在所有的 ID Card 组件都只能提取公民身份号码所包含的信息，如果说验证，那唯一能验证的就是公民身份号码是否是一个合法的公民身份号码。
 
 4. 问：如何获取年龄？
    答：例如在 PHP 中，获取年龄是一个很简单的时区，我用最快的例子，你依赖 `nesbot/carbon` 这个「时间工具」包，依赖代码：
@@ -94,8 +94,8 @@ var_dump(
    $birthday = new Carbon($identity->birthday());
    $age = $birthday->diffInYears();
    ```
-   好了，你答应下 `$age` 试试看！
+   好了，你打印下 `$age` 试试看！
 
 ## LICENSE
 
-This package follows the MIT open source agreement.
+This component follows the MIT open source agreement.
