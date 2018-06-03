@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.com/medz/id-card-of-china.svg?branch=master)](https://travis-ci.com/medz/id-card-of-china)
 
->  JavaScript 版本：https://githu.com/medz/id-card-of-china-js
+>  JavaScript 版本：https://github.com/medz/id-card-of-china-js
 
 `id-card-of-china` 是一个基于「公民身份号码」规则获取公民身份号码中包含的基础信息组件。
 
