@@ -94,6 +94,6 @@ class Identity implements IdentityInterface
             return intval(substr($identityCardNumber, 17, 1)) === $quotiety;
         }
 
-        return substr($identityCardNumber, 17, 1) === 'X';
+        return $quotiety === 10;
     }
 }
