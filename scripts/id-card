@@ -1,0 +1,65 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Medz\IdentityCard\China\Identity;
+
+/**
+ * Find file existe.
+ * @return bool
+ */
+function findFileExists(string $filename) {
+	if (file_exists($filename)) {
+		return true;
+	}
+
+	return false;
+}
+
+// Include autoload file.
+$included = false;
+foreach ([dirname(__DIR__).'/vendor/autoload.php', dirname(dirname(dirname(__DIR__))).'autoload.php'] as $filename) {
+	if (findFileExists($filename)) {
+		include $filename;
+		$included = true;
+	}
+}
+if ($included === false) {
+	echo "";
+	exit(1);
+}
+
+$argc = $_SERVER['argc'] ?: 0;
+$argv = (array) $_SERVER['argv'];
+
+$identityCardNumber = $argv[1] ?? null;
+if (!$identityCardNumber) {
+	function getIdentityCardNumberInStdin(bool $showTip = false): string
+	{
+		if ($showTip) {
+			echo "\033[45;37;5m 😝 Please enter your ID card Number: \033[0m \n";
+			echo "> ";
+		}
+
+		$handle = fopen('php://stdin', 'r');
+		$identityCardNumber = trim(fgets($handle));
+		fclose($handle);
+
+		if (!$identityCardNumber) {
+			echo "> ";
+			return call_user_func(__FUNCTION__, false);
+		}
+
+		return $identityCardNumber;
+	}
+
+	$identityCardNumber = getIdentityCardNumberInStdin(true);
+}
+
+var_dump(class_exists('Identity'));
+exit;
+
+// $identity = new Identity((string) $identityCardNumber);
+
+var_dump($identity);
