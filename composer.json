@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "medz/gb-t-2260": "^1.0"
+        "php": ">=7.1.3",
+        "medz/gb-t-2260": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.5"
@@ -25,11 +25,6 @@
     "autoload-dev": {
         "psr-4": {
             "Medz\\IdentityCard\\China\\Tests\\": "tests/"
-        }
-    },
-    "config": {
-        "platform": {
-            "php": "7.0"
         }
     }
 }

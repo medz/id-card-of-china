@@ -4,15 +4,10 @@ declare(strict_types=1);
 
 namespace Medz\IdentityCard\China\Region;
 
+use Medz\GBT2260\Getter;
+
 class Region implements RegionInterface
 {
-    /**
-     * All regions data.
-     * 
-     * @var array
-     */
-    protected static $regions = [];
-
     /**
      * The Init Region Code.
      * 
@@ -28,16 +23,6 @@ class Region implements RegionInterface
      */
     public function __construct(int $regionCode)
     {
-        if (empty(static::$regions)) {
-            // Seting regions to [static::$regions],
-            // Using `json_decode` function decode json RAW string.
-            static::$regions = json_decode(
-                // Using `file_get_contents` function read
-                // `medz/gb-t-2600` package data provided.
-                file_get_contents(MEDZ_GBT2260_RAW_PATH), true
-            );
-        }
-
         // Setting init region code.
         $this->code = (string) $regionCode;
     }
@@ -59,11 +44,9 @@ class Region implements RegionInterface
      * @return string
      * @author Seven Du <shiweidu@outlook.com>
      */
-    public function province(): string
+    public function province(): ?string
     {
-        $provinceCode = substr($this->code, 0, 2).'0000';
-
-        return static::$regions[$provinceCode];
+        return Getter::instance()->province((string) $this->code);
     }
 
     /**
@@ -72,16 +55,9 @@ class Region implements RegionInterface
      * @return string
      * @author Seven Du <shiweidu@outlook.com>
      */
-    public function city(): string
+    public function city(): ?string
     {
-        // Get city code of the region.
-        $cityCode = substr($this->code, 0, 4).'00';
-
-        if (isset(static::$regions[$cityCode])) {
-            return static::$regions[$cityCode];
-        }
-
-        return '';
+        return Getter::instance()->city((string) $this->code);
     }
 
     /**
@@ -90,9 +66,9 @@ class Region implements RegionInterface
      * @return string
      * @author Seven Du <shiweidu@outlook.com>
      */
-    public function county(): string
+    public function county(): ?string
     {
-        return static::$regions[$this->code];
+        return Getter::instance()->county((string) $this->code);
     }
 
     /**

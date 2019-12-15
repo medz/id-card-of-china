@@ -20,7 +20,7 @@ interface RegionInterface
      * @return string
      * @author Seven Du <shiweidu@outlook.com>
      */
-    public function province(): string;
+    public function province(): ?string;
 
     /**
      * Get City Of The Region.
@@ -28,7 +28,7 @@ interface RegionInterface
      * @return string
      * @author Seven Du <shiweidu@outlook.com>
      */
-    public function city(): string;
+    public function city(): ?string;
 
     /**
      * Get County Of The Region.
@@ -36,7 +36,7 @@ interface RegionInterface
      * @return string
      * @author Seven Du <shiweidu@outlook.com>
      */
-    public function county(): string;
+    public function county(): ?string;
 
     /**
      * Get The Region Tree.
